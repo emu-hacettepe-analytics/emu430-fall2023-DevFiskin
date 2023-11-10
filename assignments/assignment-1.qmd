@@ -4,12 +4,52 @@ title: "Assignment 1"
 
 # Assignment 1
 
+My first assignment has three parts.
+
+## (a)A brief summary of Quarto
+
+## (b)3 Difference between R and Python
+
+## (c)NA example
+
+1.  Python and R has syntax difference.
+
+    assignment operator in Python:
+
+    ```         
+    x = 1
+    x
+    ```
+
+    assignment operator in R:
+
+    ```         
+    x <- 1
+    x
+    ```
+
+2.writing function or a loop in R
+
+````         
+  ```
+  for (i in 1:10) {
+    print(i)
+  }
+  ```
+  
+````
+
+writing fuction or a loop in Python `for i in range(1,11):     print(i)`
+
+3.  if structure in Python \`\`\` if(5 \< 3) : print("Right")
+
 ```{r}
-1 + 1
+library("dslabs")
+data(na_example)
+
+number_of_na <- sum(is.na(na_example))
+print(number_of_na)
+cat("Toplam NA sayısı", number_of_na)
 ```
 
-My first assignment has two parts.
 
-## (a)
-
-## (b)

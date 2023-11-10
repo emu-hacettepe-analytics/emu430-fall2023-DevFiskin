@@ -3,28 +3,27 @@ title: "About Me"
 sidebar: false 
 ---
 
+# My Resume
+
+-   [My CV](https://drive.google.com/file/d/1ZSxdKGGwRACrOvpLjX02jrIL08s8ksiL/view)
+
 # Education
 
--   B.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
-
-# Work Experience
-
-## Employements
-
-1.  Firm xxx, position xx, year xxx
-
-2.  Firm yyy, position yyy, year yyy
+-   B.S., Industrial Engineering, Hacettepe University, Turkiye, 2020 - ongoing.
+-   Minor in Statistic , Hacettepe University , Turkiye, 2022 - ongoing.
 
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
-
-2.  Firm bbb, position yyy, year yyy
+1.  Firm EKON, position QA & QC intern, year 2023
 
 # Projects
+
+Teknofest Helicopter design , Turkiye, 2023
 
 # Competencies
 
 R, Quarto, Git, Python
 
 # Hobbies
+
+Dance ,Archery

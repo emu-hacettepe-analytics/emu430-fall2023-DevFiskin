@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Welcome to My Analytics Lab",
     "section": "",
-    "text": "Hello! My name is xxx xxxx.\nThis is my personal webpage.\nPlease stay tuned to follow my works on data analytics, blog posts, and more.\nThis is our template.\n\n\n\n Back to top"
+    "text": "Hello! My name is Rabia FIŞKIN.\nThis is my personal webpage.\nPlease stay tuned to follow my works on data analytics, blog posts, and more.\nThis is our template.\n\n\n\n Back to top"
   },
   {
     "objectID": "assignments/assignment-2.html",
@@ -25,28 +25,28 @@
     "href": "about.html",
     "title": "About Me",
     "section": "",
-    "text": "B.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing."
+    "text": "My CV"
   },
   {
     "objectID": "about.html#employements",
     "href": "about.html#employements",
     "title": "About Me",
     "section": "Employements",
-    "text": "Employements\n\nFirm xxx, position xx, year xxx\nFirm yyy, position yyy, year yyy"
+    "text": "Employements"
   },
   {
     "objectID": "about.html#internships",
     "href": "about.html#internships",
     "title": "About Me",
     "section": "Internships",
-    "text": "Internships\n\nFirm aaa, position xx, year xxx\nFirm bbb, position yyy, year yyy"
+    "text": "Internships\n\nFirm EKON, position QA & QC intern, year 2023"
   },
   {
     "objectID": "assignments/assignment-1.html",
     "href": "assignments/assignment-1.html",
     "title": "Assignment 1",
     "section": "",
-    "text": "1 + 1\n\n[1] 2\n\n\nMy first assignment has two parts."
+    "text": "My first assignment has three parts.\n\n\n\n\n\n\n\n\n\nPython and R has syntax difference.\nassignment operator in Python:\nx = 1\nx\nassignment operator in R:\nx &lt;- 1\nx\n\n2.writing function or a loop in R\n  ```\n  for (i in 1:10) {\n    print(i)\n  }\n  ```\n  \nwriting fuction or a loop in Python for i in range(1,11):     print(i)\n\nif structure in Python ``` if(5 &lt; 3) : print(“Right”)\n\n\nlibrary(\"dslabs\")\n\nWarning: package 'dslabs' was built under R version 4.3.2\n\ndata(na_example)\n\nnumber_of_na &lt;- sum(is.na(na_example))\nprint(number_of_na)\n\n[1] 145\n\ncat(\"Toplam NA sayısı\", number_of_na)\n\nToplam NA sayısı 145"
   },
   {
     "objectID": "assignments.html",
@@ -61,5 +61,12 @@
     "title": "My Blog",
     "section": "",
     "text": "This page is under construction.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "assignments/assignment-1.html#cna-example",
+    "href": "assignments/assignment-1.html#cna-example",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "Python and R has syntax difference.\nassignment operator in Python:\nx = 1\nx\nassignment operator in R:\nx &lt;- 1\nx\n\n2.writing function or a loop in R\n  ```\n  for (i in 1:10) {\n    print(i)\n  }\n  ```\n  \nwriting fuction or a loop in Python for i in range(1,11):     print(i)\n\nif structure in Python ``` if(5 &lt; 3) : print(“Right”)\n\n\nlibrary(\"dslabs\")\n\nWarning: package 'dslabs' was built under R version 4.3.2\n\ndata(na_example)\n\nnumber_of_na &lt;- sum(is.na(na_example))\nprint(number_of_na)\n\n[1] 145\n\ncat(\"Toplam NA sayısı\", number_of_na)\n\nToplam NA sayısı 145"
   }
 ]
