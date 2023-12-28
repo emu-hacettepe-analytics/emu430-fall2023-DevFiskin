@@ -5,5 +5,81 @@ title: "Assignment 2"
 # Assignment 2
 
 ```{r}
-1 + 1
+library(rvest)
+library(tidyverse)
+library(stringr) 
+library(ggplot2)
+url1 <- "https://www.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&num_votes=2500,&country_of_origin=TR&count=250"
+url2 <- "https://www.imdb.com/search/title/?title_type=feature&release_date=,2009-12-31&num_votes=2500,&country_of_origin=TR&count=250"
+urls <-c(url1,url2)
+data_html <- read_html(url1)
+data_html <- read_html(url2)
+
+
+#films <- tab |> setNames(c("Title", "Year", "Duration","Rating", "Votes")) 
+title_names <- data_html |> html_nodes('.ipc-title__text')
+title_names <- html_text(title_names)
+title_names <- tail(head(title_names,-1),-1)
+title_names <- str_split(title_names, " ", n=2)
+title_names <- unlist(lapply(title_names, function(x) {x[2]}))
+
+year <- data_html |> html_nodes('.sc-43986a27-7.dBkaPT.dli-title-metadata')
+year <- html_text(year)
+year <- tail(head(year,-1),-1)
+year <- unlist(lapply(year, function(x) {x[2]}))
+year <- as.numeric(year)
+
+duration <- data_html |> html_nodes('.sc-43986a27-7.dBkaPT.dli-title-metadata')
+duration <- html_text(duration)
+as_minute <- function(data) {
+  pull_the_time <- gsub(".*?(\\d{2})h\\s*(\\d{1,2})m.*", "\\1:\\2", data)
+  minute <- as.numeric(strsplit(pull_the_time, ":")[[1]][1]) * 60 +
+             as.numeric(strsplit(pull_the_time, ":")[[1]][2])
+  return(minute)
+}
+duration <- lapply(data, as_minute)
+
+rating <- data_html |> html_nodes('.sc-43986a27-7.dBkaPT.dli-title-metadata')
+rating <- html_text(rating)
+rating <- tail(head(rating,-1),-1)
+rating <- unlist(lapply(rating, function(x) {x[2]}))
+rating <- as.numeric(rating)
+
+votes <- data_html |> html_nodes('.sc-43986a27-7.dBkaPT.dli-title-metadata')
+votes <- html_text(votes)
+votes <- tail(head(votes,-1),-1)
+votes <- unlist(lapply(votes, function(x) {x[2]}))
+votes <- split(votes)
+votes <- as.numeric(votes[2])
+
+arrange(desc(rating)) %>%
+  top_n(5)
+arrange(desc(rating)) %>%
+  top_n(-5)
+
+select(title_names = c("Recep ??vedik","Hababam S??n??f??"))
+
+group_by((year))%>%
+summarise(average_rating = mean(rating))%>%
+ggplot(aes(year, average_rating))+
+  geom_point()
+
+number_of_movies <- count(title_names)%>%
+  ggplot(aes(year , number_of_movies)) +
+  geom_point()
+
+number_of_movies <- count(title_names)%>%
+  ggplot(aes(year , number_of_movies)) +
+  geom_boxplot()
+
+group_by((year))%>%
+ggplot(aes(rating, votes))+
+  geom_point()
+
+group_by((year))%>%
+ggplot(aes(rating, duration))+
+  geom_point()
+
+arrange(desc(rating)) %>%
+  top_n(1000)
 ```
