@@ -23,41 +23,43 @@ title_names <- tail(head(title_names,-1),-1)
 title_names <- str_split(title_names, " ", n=2)
 title_names <- unlist(lapply(title_names, function(x) {x[2]}))
 
-year <- data_html |> html_nodes('.sc-43986a27-7.dBkaPT.dli-title-metadata')
+year <- data_html |> html_nodes('.sc-43986a27-8.jHYIIK.dli-title-metadata-item:nth-child(1)')
 year <- html_text(year)
 year <- tail(head(year,-1),-1)
 year <- unlist(lapply(year, function(x) {x[2]}))
 year <- as.numeric(year)
 
-duration <- data_html |> html_nodes('.sc-43986a27-7.dBkaPT.dli-title-metadata')
+duration <- data_html |> html_nodes('.sc-43986a27-8.jHYIIK.dli-title-metadata-item:nth-child(2)')
 duration <- html_text(duration)
-as_minute <- function(data) {
-  pull_the_time <- gsub(".*?(\\d{2})h\\s*(\\d{1,2})m.*", "\\1:\\2", data)
-  minute <- as.numeric(strsplit(pull_the_time, ":")[[1]][1]) * 60 +
-             as.numeric(strsplit(pull_the_time, ":")[[1]][2])
-  return(minute)
-}
-duration <- lapply(data, as_minute)
+hour <- as.numeric(str_extract(duration, "\\d+(?=h)"))
+replace_na(hour, 0)
+minute <- as.numeric(str_extract(duration, "\\d+(?=m)"))
+replace_na(minute, 0)
+duration <- 60 * hour + minute
 
-rating <- data_html |> html_nodes('.sc-43986a27-7.dBkaPT.dli-title-metadata')
+
+rating <- data_html |> html_nodes('.ratingGroup--imdb-rating')
 rating <- html_text(rating)
-rating <- tail(head(rating,-1),-1)
-rating <- unlist(lapply(rating, function(x) {x[2]}))
+rating <- str_extract(rating, "\\d+\\.\\d+") 
 rating <- as.numeric(rating)
 
-votes <- data_html |> html_nodes('.sc-43986a27-7.dBkaPT.dli-title-metadata')
+votes <- data_html |> html_nodes('.sc-53c98e73-0.kRnqtn')
 votes <- html_text(votes)
-votes <- tail(head(votes,-1),-1)
-votes <- unlist(lapply(votes, function(x) {x[2]}))
-votes <- split(votes)
-votes <- as.numeric(votes[2])
-
+pattern <- "[^0-9]"
+votes <- as.numeric(str_subset(votes, pattern))
+```
+3.a) Top 5 are Ye??il??am films like "Hababam S??n??f??", "Tosun Pa??a", "S??t Karde??ler" and "CM101MMXI Fundamentals".These classics resonate with me through their timeless humor, well-crafted narratives, and unforgettable characters, earning them a special place in my heart.I love comedy, but Kemal Sunal holds a special place in my heart in this genre. So, I wasn't surprised to see his films in the top 5.
+```{r}
 arrange(desc(rating)) %>%
-  top_n(5)
+  slice_max(rating, n = 5)
 arrange(desc(rating)) %>%
-  top_n(-5)
+  slice_min(rating, n= 5)
+```
+3.b) I choose CM101MMXI Fundamentals and Hababam S??n??f?? from my favorites and they both have high rates. I think people loves comedy like me.
+```{r}
+select(title_names = c("CM101MMXI Fundamentals","Hababam S??n??f??"))
+```
 
-select(title_names = c("Recep ??vedik","Hababam S??n??f??"))
 
 group_by((year))%>%
 summarise(average_rating = mean(rating))%>%
