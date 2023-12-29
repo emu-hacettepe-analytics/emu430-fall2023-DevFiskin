@@ -9,6 +9,7 @@ library(rvest)
 library(tidyverse)
 library(stringr) 
 library(ggplot2)
+
 url1 <- "https://www.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&num_votes=2500,&country_of_origin=TR&count=250"
 url2 <- "https://www.imdb.com/search/title/?title_type=feature&release_date=,2009-12-31&num_votes=2500,&country_of_origin=TR&count=250"
 urls <-c(url1,url2)
@@ -45,22 +46,22 @@ rating <- as.numeric(rating)
 
 votes <- data_html |> html_nodes('.sc-53c98e73-0.kRnqtn')
 votes <- html_text(votes)
-pattern <- "[^0-9]"
-votes <- as.numeric(str_subset(votes, pattern))
+votes <- as.numeric(gsub("[^0-9]", "", votes))
 ```
 3.a) Top 5 are Ye??il??am films like "Hababam S??n??f??", "Tosun Pa??a", "S??t Karde??ler" and "CM101MMXI Fundamentals".These classics resonate with me through their timeless humor, well-crafted narratives, and unforgettable characters, earning them a special place in my heart.I love comedy, but Kemal Sunal holds a special place in my heart in this genre. So, I wasn't surprised to see his films in the top 5.
 ```{r}
-arrange(desc(rating)) %>%
-  slice_max(rating, n = 5)
-arrange(desc(rating)) %>%
-  slice_min(rating, n= 5)
+rating <- data.frame(rating)
+arrange(rating, desc(rating)) %>%
+  head(5)
+arrange(rating, desc(rating)) %>%
+  tail(5)
 ```
 3.b) I choose CM101MMXI Fundamentals and Hababam S??n??f?? from my favorites and they both have high rates. I think people loves comedy like me.
 ```{r}
 select(title_names = c("CM101MMXI Fundamentals","Hababam S??n??f??"))
 ```
 
-
+```{r}
 group_by((year))%>%
 summarise(average_rating = mean(rating))%>%
 ggplot(aes(year, average_rating))+
